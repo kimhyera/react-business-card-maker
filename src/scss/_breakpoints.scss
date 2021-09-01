@@ -1,0 +1,73 @@
+//  미디어 쿼리
+// --------------------------------------------------
+
+$media: screen;
+$feature: max-width;
+$home:1920px;
+$wrap-lg: 1800px;
+$wrap: 1600px;
+$tablet_row:1024px;
+$tablet: 768px;
+$wphone: 570px;
+$phone: 480px;
+
+@mixin size($value) {
+
+  @if $value==xxxl {
+
+    // @media screen and (max-width: 1920px)
+    @media #{$media} and ($feature: $home) {
+      @content; // Yield the content inside the @include
+    }
+  }
+
+  @if $value==xxl{
+
+    // @media screen and (max-width: $l_wrapper)
+    @media #{$media} and ($feature: $wrap-lg) {
+      @content; // Yield the content inside the @include
+    }
+  }
+
+  @else if $value==xl {
+
+    // @media screen and (max-width:wrapper)
+    @media #{$media} and ($feature: $wrap) {
+      @content; // Yield the content inside the @include
+    }
+  }
+
+
+
+  @else if $value==lg {
+
+    // @media screen and (max-width: 1024px)
+    @media #{$media} and ($feature: $tablet_row) {
+      @content; // Yield the content inside the @include
+    }
+  }
+
+  @else if $value==md {
+
+    // @media screen and (max-width: 768px)
+    @media #{$media} and ($feature: $tablet) {
+      @content;
+    }
+  }
+
+  @else if $value==sm {
+
+    // @media screen and (max-width: 570px)
+    @media #{$media} and ($feature: $wphone) {
+      @content;
+    }
+  }
+
+  @else if $value==xs {
+
+    // @media screen and (max-width: 480px)
+    @media #{$media} and ($feature: $phone) {
+      @content;
+    }
+  }
+}

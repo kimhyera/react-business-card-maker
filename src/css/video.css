@@ -1,0 +1,16 @@
+/* list */
+.video-list { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; max-width: 1800px; margin: 0 auto; }
+
+.video-item { -webkit-box-flex: 0; -ms-flex: 0 0 16.6666%; flex: 0 0 16.6666%; margin: 1%; }
+
+.thumbnail { display: block; border: 1px solid #ddd; }
+
+.video-item-cover { position: relative; overflow: hidden; padding-top: 56.25%; position: relative; overflow: hidden; }
+
+.video-item-img { max-width: 100%; position: absolute; top: 50%; left: 50%; width: auto; height: auto; min-width: 1000%; min-height: 1000%; max-width: none; max-height: none; -webkit-transform: translate(-50%, -50%) scale(0.1); transform: translate(-50%, -50%) scale(0.1); }
+
+.video-item-details { padding: 1em; }
+
+.video-item-details-h { margin-bottom: 10px; color: #000; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; white-space: normal; -webkit-line-clamp: 2; font-weight: 500; font-size: 1.2rem; font-weight: 500; line-height: 2.0rem; height: 4.0rem; }
+
+.video-item-details-des { color: #aaa; }

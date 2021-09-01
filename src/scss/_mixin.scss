@@ -1,0 +1,1057 @@
+@charset "utf-8";
+
+//
+// SUMMARY:
+//폰트
+//
+//위치
+//아이콘
+//board
+
+//호버
+//화살표
+
+//애니메이션
+//
+
+//플렉스
+//
+//텍스트
+
+// 1) 폰트 em
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+// 2) 폰트 calc
+// $layout-max-width: 720px;
+// $font-bound-min: 320px; // will override defaults
+// $font-bound-max: 720px; // will override defaults
+
+// ==============================
+// Font size mixin
+// ==============================
+
+//  default font scale bounding
+$font-lock-min: 480px !default;
+$font-lock-max: 1600px !default;
+
+//  font-size
+
+//m 폰트, pc 폰트, m min-width , pc min-width 
+//ex) @include font-size(16px,24px);  폰트 < 1600 && 폰트 > 480  계산된 폰트값 적용함.
+//계산 16px + (24px- 16px) *(100vw - 480px) / (1600px-480px)
+@mixin font-size($min, $max: null, $lock-min: $font-lock-min, $lock-max: $font-lock-max) {
+  & {
+    font-size: $min;
+  }
+
+  @if $max {
+    @media (min-width: $lock-min) and (max-width: $lock-max) {
+      & {
+        font-size: calc(#{$min} + #{num($max) - num($min)} * (100vw - #{$lock-min}) / #{num( $lock-max) - num($lock-min)
+
+        }
+
+      );
+    }
+  }
+
+  @media (min-width: $lock-max) {
+    & {
+      font-size: $max;
+    }
+  }
+}
+}
+
+//  strip units helper function
+@function num($input) {
+  @return $input/($input * 0 + 1);
+}
+
+
+
+
+
+//위치
+@mixin full-pos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+//xei 아이콘
+@mixin xei($content) {
+
+  //font before
+  content: $content;
+  font-family: xeicon !important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+//left \e93d right \e940  top \e946 bottom \e943
+
+//\e936
+
+//board 게시판
+
+//board imgbg
+
+@mixin imgsrc($x, $y, $imgsize: cover) {
+  $padding: unquote(($y / $x) * 100 + '%');
+  display: block;
+  transition: 0.3s;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: $imgsize;
+  position: relative;
+  overflow: hidden;
+  padding-top: $padding;
+  @content;
+}
+
+
+
+@mixin imgToBg2($x, $y, $type: cover) {
+
+  $padding: unquote(($y / $x) * 100 + '%');
+
+  position: relative;
+  overflow: hidden;
+  padding-top: $padding;
+
+
+
+  position: relative;
+  overflow: hidden;
+
+  @if ($type==cover) {
+    >img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: auto;
+      min-width: 1000%;
+      min-height: 1000%;
+      max-width: none;
+      max-height: none;
+      transform: translate(-50%, -50%) scale(0.1);
+    }
+  }
+
+  @else if ($type==contain) {
+    >img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: auto;
+      min-width: 0;
+      min-height: 0;
+      max-width: 100%;
+      max-height: 100%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @else if ($type==none) {
+    >img {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+}
+
+
+//비디오
+
+@mixin video_wrap($x, $y) {
+  overflow: hidden;
+  position: relative;
+  $padding: unquote(($y / $x) * 100 + '%');
+
+  padding-top: $padding;
+
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: 100%;
+    // 비디오의  비율이 다르므로 부모의 높이값으로 맞춤
+    overflow: hidden;
+  }
+}
+
+
+
+// 배경
+@mixin bg-($position:0 0, $size:cover) {
+
+  background: {
+    repeat: no-repeat;
+    size: $size;
+    position: $position;
+  }
+}
+
+
+
+
+//딤처리
+@mixin imgdim() {
+  content: '';
+  position: absolute;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+//버튼
+
+@mixin btn($width, $height, $color-bg, $color) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  line-height: $height;
+  background: $color-bg;
+  color: $color;
+  text-align: center;
+}
+
+
+// 애니메이션
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+//리스트 텍스트
+
+//line 1줄인경우
+// @include ellipsis;
+//line 2줄이상인경우
+// ex) @include ellipsis(40,2)
+@mixin ellipsis($height: null, $line: 1) {
+  @if ($line==1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
+
+  @else {
+    height: #{$height}px;
+    $line-height: unquote(($height / $line) + px);
+    line-height: $line-height;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+@mixin break-word {
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+//하단 bar
+@mixin barli($border-color: #aaa) {
+  padding: 0 10px;
+  position: relative;
+  display: inline-block;
+
+  &:before {
+    content: '';
+    border-left: 1px solid $border-color;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: -1px;
+    margin-top: -5px;
+  }
+
+  &:first-child {
+    padding-left: 0;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+//중앙정렬
+
+@mixin txtm($x, $y) {
+  -webkit-transform: translate(-$x, -$y);
+  transform: translate(-$x, -$y);
+  position: absolute;
+  top: $y;
+  left: $x;
+}
+
+//item center
+@mixin posi_center($w, $h, $p: absolute) {
+  width: if(unitless($w), #{$w}px, $w);
+  height: if(unitless($h), #{$h}px, $h);
+  position: $p;
+  top: 50%;
+  left: 50%;
+  bottom: 0;
+  margin: auto;
+}
+
+//input 인풋 폼
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+
+  :-moz-placeholder {
+    @content;
+  }
+
+  ::-moz-placeholder {
+    @content;
+  }
+
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+//클리어
+@mixin clearfix {
+  zoom: 1;
+
+  &:before {
+    content: '';
+    display: block;
+  }
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+//커스텀 라디오
+@mixin custom_radio() {
+  &:after {
+    content: '';
+    display: block;
+  }
+
+  label {
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    font-weight: 200;
+    text-align: center;
+    text-transform: initial;
+    width: 49%;
+    padding: 5px;
+    transition: background 0.2s, color 0.2s;
+    background: #444;
+    color: #fff;
+
+    &:last-child {
+      float: right;
+    }
+  }
+
+  input[type='radio'] {
+    display: none;
+
+    &:checked+label {
+      background: $mc;
+      color: #fff;
+    }
+  }
+}
+
+/*before, after*/
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+// CSS Triangles Mixin
+@mixin triangle($direction, $color, $height, $width) {
+  // Base styles for all triangles
+  border-style: solid;
+  height: 0;
+  width: 0;
+
+  // Cardinal Directions - can't be scalene this way
+  @if ($direction=='top') {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 ($width/2) $height ($width/2);
+  }
+
+  @if ($direction=='bottom') {
+    border-color: $color transparent transparent transparent;
+    border-width: $height ($width/2) 0 ($width/2);
+  }
+
+  @if ($direction=='right') {
+    border-color: transparent transparent transparent $color;
+    border-width: ($height/2) 0 ($height/2) $width;
+  }
+
+  @if ($direction=='left') {
+    border-color: transparent $color transparent transparent;
+    border-width: ($height/2) $width ($height/2) 0;
+  }
+
+  // Ordinal Directions - can be scalene this way!
+  @if ($direction=='top-left') {
+    border-color: $color transparent transparent transparent;
+    border-width: $height $width 0 0;
+  }
+
+  @if ($direction=='top-right') {
+    border-color: transparent $color transparent transparent;
+    border-width: 0 $width $height 0;
+  }
+
+  @if ($direction=='bottom-left') {
+    border-color: transparent transparent transparent $color;
+    border-width: $height 0 0 $width;
+  }
+
+  @if ($direction=='bottom-right') {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 0 $height $width;
+  }
+}
+
+@mixin bollet1($color) {
+  position: relative;
+  padding-left: 10px;
+
+  &:before {
+    content: '·';
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $color;
+  }
+}
+
+@mixin bollet() {
+  li {
+    position: relative;
+    padding-left: 10px;
+
+    &:before {
+      content: '·';
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #666;
+    }
+  }
+}
+
+@mixin opacity($value) {
+  $valuePercent: $value * 100;
+
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{#valuePercent})';
+  filter: alpha(opacity=$valuePercent);
+  opacity: $value;
+}
+
+
+
+@mixin mbr_no() {
+  @include size(lg) {
+    br {
+      display: none;
+    }
+  }
+}
+
+
+
+
+
+
+//스크롤 
+@mixin row_scroll($max_width: false, $con_min_width: false) {
+  // 스크린값 , 컨텐츠값
+
+  height: 100%;
+  overflow-x: hidden;
+  padding: 0 0 20px 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media screen and (max-width: $max_width) {
+    width: 100%;
+    padding: 0 0 8px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    >table,
+    >img,
+    >* {
+      width: 100%;
+      min-width: $con_min_width;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #999;
+  }
+}
+
+
+@mixin col_scroll() {
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #999;
+  }
+}
+
+
+@mixin map-kakao($height, $control: false) {
+  .root_daum_roughmap {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 100% !important;
+    border-bottom: 1px solid #ddd;
+  }
+
+  @if ($control==false) {
+    .wrap_map {
+      width: 100%;
+      height: $height !important;
+    }
+
+    .wrap_controllers {
+      display: none;
+    }
+  }
+
+  @else {
+    .wrap_controllers {
+      display: block;
+    }
+  }
+
+  .wrap_map {
+    @include size(lg) {
+      min-height: 300px;
+      height: 50vw !important;
+    }
+  }
+}
+
+@mixin gradient($dir, $from, $to) {
+  background: $from;
+  background: linear-gradient($dir, $from, $to);
+  background: -webkit-linear-gradient($dir, $from, $to);
+  background: -o-linear-gradient($dir, $from, $to);
+  background: -moz-linear-gradient($dir, $from, $to);
+
+
+}
+
+@mixin font-gradient($from, $to, $dir) {
+  background: -webkit-linear-gradient($dir, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  -o-background-clip: text;
+  -o-text-fill-color: transparent;
+  -moz-lbackground-clip: text;
+  -moz-ltext-fill-color: transparent;
+}
+
+
+
+
+
+
+//애니메이션
+//
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// 플렉스  /////////////////////////////////////////////////////////// 
+
+@mixin hflex($items:center) {
+
+  display: flex;
+  align-items: $items;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+@mixin display-flex() {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin display-inline-flex() {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex($grow-shrink-basis) {
+  -ms-flex: $grow-shrink-basis;
+  -webkit-flex: $grow-shrink-basis;
+  flex: $grow-shrink-basis;
+}
+
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+  -ms-flex-positive: $grow;
+  flex-grow: $grow;
+}
+
+@mixin flex-shrink($shrink) {
+  -ms-flex-negative: $shrink;
+  -webkit-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+
+@mixin flex-basis($basis) {
+  -webkit-flex-basis: $basis;
+  -ms-flex-preferred-size: $basis;
+  flex-basis: $basis;
+  max-width: $basis;
+}
+
+@mixin justify-content($align) {
+  -webkit-justify-content: $align;
+
+  @if ($align=='flex-start') {
+    -ms-flex-pack: start;
+  }
+
+  @else if ($align=='flex-end') {
+    -ms-flex-pack: end;
+  }
+
+  @else if ($align=='space-around') {
+    -ms-flex-pack: distribute;
+  }
+
+  @else if ($align=='space-between') {
+    -ms-flex-pack: justify;
+  }
+
+  @else {
+    -ms-flex-pack: $align;
+  }
+
+  justify-content: $align;
+}
+
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+
+  @if ($align=='flex-start') {
+    -ms-flex-pack: start;
+  }
+
+  @else if ($align=='flex-end') {
+    -ms-flex-pack: end;
+  }
+
+  @else if ($align=='space-around') {
+    -ms-flex-pack: distribute;
+  }
+
+  @else if ($align=='space-between') {
+    -ms-flex-pack: justify;
+  }
+
+  @else if ($align=='center') {
+    -ms-flex-pack: center;
+  }
+
+  @else if ($align=='stretch') {
+    -ms-flex-pack: stretch;
+  }
+
+  @else {
+    -ms-flex-pack: $align;
+  }
+
+  align-content: $align;
+}
+
+@mixin align-items($valign) {
+  -webkit-align-items: $valign;
+
+  @if ($valign=='flex-start') {
+    -ms-flex-align: start;
+  }
+
+  @else if ($valign=='flex-end') {
+    -ms-flex-align: end;
+  }
+
+  @else {
+    -ms-flex-align: $valign;
+  }
+
+  align-items: $valign;
+}
+
+@mixin align-self($valign) {
+  -webkit-align-self: $valign;
+
+  @if ($valign=='flex-start') {
+    -ms-flex-item-align: start;
+  }
+
+  @else if ($valign=='flex-end') {
+    -ms-flex-item-align: end;
+  }
+
+  @else {
+    -ms-flex-item-align: $valign;
+  }
+
+  align-self: $valign;
+}
+
+@mixin order($order) {
+  -webkit-order: $order;
+  -ms-flex-order: $order;
+  order: $order;
+}
+
+@mixin columns($count) {
+  -webkit-columns: $count;
+  -moz-columns: $count;
+  columns: $count;
+}
+
+@mixin break-inside($break-inside) {
+  -webkit-column-break-inside: $break-inside;
+  page-break-inside: $break-inside;
+  break-inside: $break-inside;
+}
+
+///custom grid
+
+@function colums($number: 1, $colums: 12, $width: 100%) {
+  @return $width * $number / $colums;
+}
+
+// gutter
+
+@mixin grid($number: false, $gutter: 30px, $col: false) {
+  @if $col==false {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+
+    >* {
+      padding-left: $gutter;
+      padding-right: $gutter;
+      -ms-flex: 0 0 colums($number);
+      flex: 0 0 colums($number);
+      max-width: colums($number);
+
+      @content;
+    }
+  }
+
+  @else {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    >* {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+    }
+  }
+}
+
+@mixin single-grid($number) {
+  -ms-flex: 0 0 colums($number);
+  flex: 0 0 colums($number);
+  max-width: colums($number);
+}
+
+@mixin flex-fill {
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+}
+
+//조합 
+@mixin fixed_col($order:1, $width:false, $align:flex-start) {
+  display: flex;
+  align-items: $align;
+
+  >* {
+
+    @if ($order==1) {
+
+      &:nth-child(1) {
+        width: $width;
+        flex: 0 0 auto;
+      }
+
+      &:nth-child(2) {
+        flex: 1px 1 0;
+      }
+
+    }
+
+    @else if ($order==2) {
+
+      &:nth-child(1) {
+        flex: 1px 1 0;
+      }
+
+      &:nth-child(2) {
+        width: $width;
+        flex: 0 0 auto;
+      }
+    }
+
+
+  }
+}
+
+
+
+
+// 마진  /////////////////////////////////////////////////////////// 
+
+// Element-groups
+@mixin group($offset-x, $offset-y: $offset-x) {
+  margin-bottom: -$offset-y;
+  margin-left: -$offset-x;
+
+  &:empty {
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  >* {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: $offset-y;
+    margin-left: $offset-x;
+  }
+}
+
+@mixin group-media($offset-x, $offset-y: $offset-x) {
+  margin-bottom: -$offset-y;
+  margin-left: -$offset-x;
+
+  >* {
+    margin-bottom: $offset-y;
+    margin-left: $offset-x;
+  }
+}
+
+@mixin groupX($offset-x) {
+  margin-left: -$offset-x;
+
+  >* {
+    margin-left: $offset-x;
+  }
+}
+
+@mixin groupY($offset-y) {
+  margin-bottom: -$offset-y;
+
+  >* {
+    margin-bottom: $offset-y;
+  }
+}
+
+
+@mixin mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin bg-img($h, $m_padding: 40px) {
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: $h;
+
+  @include size(lg) {
+    height: auto;
+    padding: $m_padding 0;
+  }
+}
+
+@mixin m-mb($mb) {
+  @include size(lg) {
+    margin-bottom: $mb;
+  }
+}
+
+@mixin txt_mt() {
+  margin-top: 30px;
+
+  @include size(lg) {
+    margin-top: 20px;
+  }
+}
+
+@mixin part_mt() {
+  margin-top: 60px;
+
+  @include size(lg) {
+    margin-top: 30px;
+  }
+}
+
+
+// 효과 /////////////////////////////////////////////////////////// 
+//그로우 
+@mixin txtglow($color) {
+
+  text-shadow:
+
+    0 0 2px #fff,
+    // 0 0 10px #fff,
+    0 0 10px $color,
+    0 0 20px $color,
+    0 0 30px $color,
+    0 0 40px $color
+}
+
+//글자테두리 
+// text-stroke ie ver 
+@mixin txtstroke ($size, $color) {
+
+  text-shadow:
+    $size $size 0 $color,
+    -1px -1px 0 $color,
+    1px -1px 0 $color,
+    -1px 1px 0 $color,
+    1px 1px 0 $color
+}
+
+
+
+//text deco
+
+@mixin txt_deco($size: 30px, $left: 0, $color: $mc) {
+
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: $left;
+  width: $size;
+  border-bottom: 1px solid $color;
+
+  @if ($left==50%) {
+    transform: translateX(-50%);
+  }
+
+
+}
