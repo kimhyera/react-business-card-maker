@@ -65,7 +65,12 @@ html {
 		font-size: 13px;
 	}
 }
-
+ul {
+	padding-left: 0;
+}
+li {
+	list-style: none;
+}
 .content {
 	display: flex;
 	margin: 0 -2rem;

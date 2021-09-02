@@ -13,3 +13,7 @@ https://firebase.google.com/docs/auth/web/google-signin
 - 인증 상태 관찰자 설정 및 사용자 데이터 가져오기
   (https://firebase.google.com/docs/auth/web/start#set_an_authentication_state_observer_and_get_user_data)
 - 로그아웃 처리
+
+## Maker 작업
+
+- set카드 임이의 데이터 state 생성
