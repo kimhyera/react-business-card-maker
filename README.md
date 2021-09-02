@@ -17,3 +17,5 @@ https://firebase.google.com/docs/auth/web/google-signin
 ## Maker 작업
 
 - set카드 임이의 데이터 state 생성
+- maker, preview list read
+-
