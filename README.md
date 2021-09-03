@@ -22,9 +22,13 @@ https://firebase.google.com/docs/auth/web/google-signin
 ## AddForm 작업
 
 - input 데이터 ref 사용하여 받아온다.
-  (obj 값 : 네이밍Ref.current.value , <form ref={formRef}>)
-
+  (obj 값 : 네이밍Ref.current.value , <form ref={formRef}>
 - updated = [...cards, obj]; 기존배열에 끼워 넣기
   setCards(updated); 업데이트 처리완료
   장점: jquery 에서는 업데이트를 하고 다시 로드를 하였는데
   리액트는 업데이트를 하면 자동 랜더링이 된다.
+
+## State 업데이트 작업
+
+- input 변경이 생기면 onChange 함수 호출함
+- 성능고려

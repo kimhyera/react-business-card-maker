@@ -53,11 +53,34 @@ const Maker = ({ authService }) => {
 			}
 		});
 	});
-	//update 카드
+	//추가 카드
 	const addCard = (obj) => {
 		const updated = [...cards, obj];
 		setCards(updated);
 		console.log(cards, obj);
+	};
+
+	//update 카드
+	const updateCard = (obj) => {
+		console.log(obj);
+
+		//const updated2 = cards.map((item) => {
+		//	if (obj.id === item.id) {
+		//		return obj, console.log('=' + item.id);
+		//	}
+		//	return item, console.log('!=' + item);
+		//});
+
+		//console.log(updated2);
+
+		//const updated = [...cards, updated2];
+		//setCards(updated);
+		//console.log(cards, obj);
+	};
+
+	//delete 카드
+	const deletedCard = (obj) => {
+		console.log(obj);
 	};
 
 	return (
@@ -72,7 +95,7 @@ const Maker = ({ authService }) => {
 				<h2 className="title">Business Card Maker</h2>
 			</header>
 			<div className="maker-wrap">
-				<Editor cards={cards} addCard={addCard} />
+				<Editor cards={cards} addCard={addCard} updateCard={updateCard} deletedCard={deletedCard} />
 				<Preview cards={cards} />
 			</div>
 
