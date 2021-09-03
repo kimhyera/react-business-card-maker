@@ -31,4 +31,11 @@ https://firebase.google.com/docs/auth/web/google-signin
 ## State 업데이트 작업
 
 - input 변경이 생기면 onChange 함수 호출함
-- 성능고려
+- 성능고려 데이터 바뀜
+<pre>
+	const obj = {
+		id :cards,
+	}
+
+  //card map() 처리가 아닌 card key 를 map 처리한다. (Object.keys() 이용)
+</pre>

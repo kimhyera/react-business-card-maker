@@ -5,11 +5,11 @@ const AddFom = ({ addCard }) => {
 	const nameRef = useRef();
 	const companyRef = useRef();
 	const themeRef = useRef();
-	const workRef = useRef();
+	const titleRef = useRef();
 	const emailRef = useRef();
 	const messageRef = useRef();
 
-	console.dir(formRef.current);
+	//console.dir(formRef.current);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
@@ -18,7 +18,7 @@ const AddFom = ({ addCard }) => {
 			name: nameRef.current.value || '', //null  없다면 생략해도 된다.
 			company: companyRef.current.value || '',
 			theme: themeRef.current.value, //select
-			work: workRef.current.value || '',
+			title: titleRef.current.value || '',
 			email: emailRef.current.value || '',
 			message: messageRef.current.value || '',
 			fileName: '',
@@ -50,7 +50,7 @@ const AddFom = ({ addCard }) => {
 					</div>
 					<div className="row">
 						<div className="col-6">
-							<input type="text" className="form-control" placeholder="work" name="work" ref={workRef} />
+							<input type="text" className="form-control" placeholder="title" name="title" ref={titleRef} />
 						</div>
 						<div className="col-6">
 							<input type="text" className="form-control" placeholder="email" name="email" ref={emailRef} />

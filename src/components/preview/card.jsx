@@ -6,14 +6,24 @@ const Card = ({ card }) => {
 	const { name, company, title, email, message, theme, fileName, fileURL } = card;
 	const url = fileURL || DEFAULT_IMAGE;
 	return (
-		<li className={`${styles.card} ${getStyles(theme)}`}>
-			<img className={styles.avatar} src={url} alt="profile photo" />
-			<div className={styles.info}>
-				<h1 className={styles.name}>{name}</h1>
-				<p className={styles.company}>{company}</p>
-				<p className={styles.title}>{title}</p>
-				<p className={styles.email}>{email}</p>
-				<p className={styles.message}>{message}</p>
+		<li>
+			<div className={`card ${getStyles(card.theme)}`}>
+				<div className="d-flex">
+					<div className="card-thumb col-auto">
+						<img src={url} alt="dprofile photo" />
+					</div>
+					<div className="card-text col">
+						<div className="name-box">
+							<p className="name h3"> {card.name}</p>
+							<p>{card.company}</p>
+						</div>
+						<div className="des-box">
+							<p>{card.title}</p>
+							<p>{card.email}</p>
+							<p>{card.message}</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</li>
 	);
@@ -22,14 +32,12 @@ const Card = ({ card }) => {
 function getStyles(theme) {
 	switch (theme) {
 		case 'dark':
-			return styles.dark;
+			return 'dark';
 		case 'light':
-			return styles.light;
+			return 'light';
 		case 'colorful':
-			return styles.colorful;
+			return 'colorful';
 		default:
-			throw new Error(`unknown theme: ${theme}`);
 	}
 }
-
 export default Card;

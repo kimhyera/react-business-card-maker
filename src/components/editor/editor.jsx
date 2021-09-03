@@ -3,18 +3,18 @@ import AddFom from './addFom';
 import './editor.scss';
 import EditForm from './editForm';
 
+//
+
 const Editor = ({ cards, addCard, updateCard, deleteCard }) => (
 	<section className="editor">
 		<h3 className="title">Card Maker</h3>
-
 		<ul className="editor-list">
-			{cards.map((card) => (
-				<EditForm key={card.id} card={card} updateCard={updateCard} deleteCard={deleteCard} />
+			{Object.keys(cards).map((key) => (
+				<EditForm key={key} card={cards[key]} updateCard={updateCard} deleteCard={deleteCard} />
 			))}
 		</ul>
 
 		<h4 className="title">Add Card</h4>
-
 		<AddFom addCard={addCard} />
 	</section>
 );

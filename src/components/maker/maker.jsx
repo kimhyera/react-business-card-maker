@@ -5,41 +5,41 @@ import Preview from '../preview/preview';
 import './maker.scss';
 
 const Maker = ({ authService }) => {
-	const [cards, setCards] = useState([
-		{
+	const [cards, setCards] = useState({
+		1: {
 			id: '1',
-			name: 'Teo',
-			company: 'Hyera home',
+			name: 'Ellie',
+			company: 'Samsung',
 			theme: 'dark',
-			email: 'test@gmail.com',
+			title: 'Software Engineer',
+			email: 'ellie@gmail.com',
 			message: 'go for it',
-			work: 'My Sun',
-			fileURL: 'teo.jpg',
-			fileName: '',
+			fileName: 'ellie',
+			fileURL: null,
 		},
-		{
+		2: {
 			id: '2',
-			name: 'Teo2',
-			company: 'Hyera home',
+			name: 'Ellie2',
+			company: 'Samsung',
 			theme: 'light',
-			email: 'test@gmail.com',
+			title: 'Software Engineer',
+			email: 'ellie@gmail.com',
 			message: 'go for it',
-			work: 'My Sun',
-			fileURL: null,
-			fileName: '',
+			fileName: 'ellie',
+			fileURL: 'ellie.png',
 		},
-		{
+		3: {
 			id: '3',
-			name: 'Te3o',
-			company: 'Hyera home',
-			theme: 'light',
-			email: 'test@gmail.com',
+			name: 'Ellie3',
+			company: 'Samsung',
+			theme: 'colorful',
+			title: 'Software Engineer',
+			email: 'ellie@gmail.com',
 			message: 'go for it',
-			work: 'My Sun',
+			fileName: 'ellie',
 			fileURL: null,
-			fileName: '',
 		},
-	]);
+	});
 
 	const history = useHistory();
 	const onLogout = () => {
@@ -53,34 +53,21 @@ const Maker = ({ authService }) => {
 			}
 		});
 	});
-	//추가 카드
-	const addCard = (obj) => {
-		const updated = [...cards, obj];
-		setCards(updated);
-		console.log(cards, obj);
+
+	const createOrUpdateCard = (card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			updated[card.id] = card;
+			return updated;
+		});
 	};
 
-	//update 카드
-	const updateCard = (obj) => {
-		console.log(obj);
-
-		//const updated2 = cards.map((item) => {
-		//	if (obj.id === item.id) {
-		//		return obj, console.log('=' + item.id);
-		//	}
-		//	return item, console.log('!=' + item);
-		//});
-
-		//console.log(updated2);
-
-		//const updated = [...cards, updated2];
-		//setCards(updated);
-		//console.log(cards, obj);
-	};
-
-	//delete 카드
-	const deletedCard = (obj) => {
-		console.log(obj);
+	const deleteCard = (card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			delete updated[card.id];
+			return updated;
+		});
 	};
 
 	return (
@@ -95,7 +82,7 @@ const Maker = ({ authService }) => {
 				<h2 className="title">Business Card Maker</h2>
 			</header>
 			<div className="maker-wrap">
-				<Editor cards={cards} addCard={addCard} updateCard={updateCard} deletedCard={deletedCard} />
+				<Editor cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deletedCard={deleteCard} />
 				<Preview cards={cards} />
 			</div>
 
