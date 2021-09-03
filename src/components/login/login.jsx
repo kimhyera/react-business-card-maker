@@ -32,11 +32,11 @@ const Login = ({ authService }) => {
 		<section class="login-wrap">
 			<header className="header">
 				<img className="logo" src="/images/logo.png" alt="logo" />
-				<h1 className="title">Business Card Maker</h1>
+				<h4 className="title">Business Card Maker</h4>
 			</header>
 
-			<section className="login">
-				<h1>Login</h1>
+			<section className="login ">
+				<h5 className="mb-3">Login</h5>
 
 				<ul className="list">
 					<li className="item">

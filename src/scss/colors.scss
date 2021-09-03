@@ -1,10 +1,17 @@
-$makerBlack: black;
+$makerBlack: rgba(#000, 0.87);
 $makerWhite: white;
 $makerLightGrey: #e8e7e6;
 $makerLightPink: #ffeae8;
 $makerGrey: #626262;
 $makerGreen: #385461;
 $makerPink: pink;
-$makerShadow: rgba(217, 217, 217, 1);
+$makerShadow: rgbaa(217, 217, 217, 1);
 $makerColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%, rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
 $makerWheat: wheat;
+$makerBg: #f4f4f7;
+$primary: #6200ee;
+$secondary: rgba(98, 0, 238, 0.12);
+
+$boxShadow: 0px 1px 3px rgba(#000, 0.5), 0px 2px 1px rgba(#000, 0.1), 0px 1px 1px rgba(#000, 0.1);
+
+$gradient: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));

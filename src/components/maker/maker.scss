@@ -1,5 +1,6 @@
 @import '../../scss/breakpoints';
 @import '../../scss/mixin';
+@import '../../scss/colors.scss'; //reset
 .maker {
 	width: 100%;
 	height: 100%;
@@ -18,9 +19,29 @@
 
 .maker-wrap > section {
 	flex-basis: 50%;
+	background-color: $makerBg;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
 
 	@include size(lg) {
 		flex: 0 0 100%;
 		min-width: 100%;
 	}
+}
+.editor {
+	padding-right: 1.5rem;
+	padding-left: 3rem;
+}
+.preview {
+	padding-left: 1.5rem;
+	padding-right: 3rem;
+}
+
+.card {
+	box-shadow: $boxShadow;
+}
+
+.title {
+	margin-bottom: 1em;
+	color: $makerBlack;
 }

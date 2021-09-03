@@ -4,9 +4,8 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
-
 
 html,
 body,
@@ -64,12 +63,10 @@ td,
 header,
 section,
 footer {
-  border: 0;
-  margin: 0;
-  padding: 0;
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
-
-
 
 html,
 body,
@@ -127,9 +124,9 @@ td,
 header,
 section,
 footer {
-  border: 0;
-  margin: 0;
-  padding: 0;
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
 
 article,
@@ -144,7 +141,7 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+	display: block;
 }
 
 div,
@@ -171,8 +168,8 @@ td,
 button,
 textarea,
 select {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 h1,
@@ -181,14 +178,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 100%;
-  font-weight: normal;
+	font-size: 100%;
+	font-weight: normal;
 }
 
 img {
-  border: 0;
-  vertical-align: top;
-  max-width: 100%;
+	border: 0;
+	vertical-align: top;
+	max-width: 100%;
 }
 
 ul,
@@ -197,125 +194,119 @@ dl,
 dt,
 dd,
 li {
-  list-style: none;
+	list-style: none;
 }
 
 table,
 th,
 td {
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-weight: normal;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-weight: normal;
 }
 
 th,
 td {
-  word-break: break-all;
+	word-break: break-all;
 }
 
 fieldset,
 blockquote,
 iframe,
 button {
-  border: none;
+	border: none;
 }
 
 // i, em, u, cite {
 //   font-style: normal;
 // }
 
-
 b,
 strong {
-  font-weight: bolder;
+	font-weight: bolder;
 }
 
 small {
-  font-size: 80%;
+	font-size: 80%;
 }
 
 sub,
 sup {
-  position: relative;
-  font-size: 75%;
-  line-height: 0;
-  vertical-align: baseline;
+	position: relative;
+	font-size: 75%;
+	line-height: 0;
+	vertical-align: baseline;
 }
 
 sub {
-  bottom: -.25em;
+	bottom: -0.25em;
 }
 
 sup {
-  top: -.5em;
+	top: -0.5em;
 }
 
-
-
 a {
-  color: #666;
-  text-decoration: none;
-  transition: background 0.3s ease;
+	color: #666;
+	text-decoration: none;
+	transition: background 0.3s ease;
 
-  &:hover,
-  &:focus {
-    text-decoration: none !important;
-  }
+	&:hover,
+	&:focus {
+		text-decoration: none !important;
+	}
 }
 
 img,
 fieldset {
-  border: 0;
-  outline: none;
+	border: 0;
+	outline: none;
 }
 
 input,
 button {
-  outline: none;
+	outline: none;
 }
 
 body {
-  width: 100%;
-  color: #666;
-  font-weight: 400;
-  line-height: 1.5;
-  -webkit-text-size-adjust: none;
+	width: 100%;
+	color: #666;
+	font-weight: 400;
+	line-height: 1.5;
+	-webkit-text-size-adjust: none;
 
-  word-break: keep-all;
+	word-break: keep-all;
 }
-
-
 
 /* 중국어 (간체) */
 .lang_ch {
-  font-family: sans-serif, sans-serif;
+	font-family: sans-serif, sans-serif;
 }
 
 input {
-  font: inherit;
-  margin: 0;
-  line-height: normal;
-  -webkit-border-radius: 0;
-  resize: none;
+	font: inherit;
+	margin: 0;
+	line-height: normal;
+	-webkit-border-radius: 0;
+	resize: none;
 }
 
 button {
-  background: transparent;
-  cursor: pointer;
-  vertical-align: middle;
-  margin: 0;
-  cursor: pointer;
-  -webkit-appearance: none;
+	background: transparent;
+	cursor: pointer;
+	vertical-align: middle;
+	margin: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
 }
 
 input {
-
-  &[type="submit"],
-  &[type="button"],
-  &[type="reset"] {
-    cursor: pointer;
-    -webkit-appearance: none;
-  }
+	&[type='submit'],
+	&[type='button'],
+	&[type='reset'] {
+		cursor: pointer;
+		-webkit-appearance: none;
+	}
 }
 
 section,
@@ -325,188 +316,182 @@ aside,
 header,
 footer,
 main {
-  display: block;
+	display: block;
 }
 
 input {
-  &[type="date"] {
+	&[type='date'] {
+		&::-webkit-calendar-picker-indicator,
+		&::-webkit-inner-spin-button {
+			display: none;
+		}
+	}
 
-    &::-webkit-calendar-picker-indicator,
-    &::-webkit-inner-spin-button {
-      display: none;
-    }
-  }
+	&[type='text'],
+	&[type='search'],
+	&[type='tel'],
+	&[type='number'],
+	&[type='password'] {
+		-webkit-appearance: none;
+		border-radius: 0;
+		padding-left: 10px;
+	}
 
-  &[type="text"],
-  &[type="search"],
-  &[type="tel"],
-  &[type="number"],
-  &[type="password"] {
-    -webkit-appearance: none;
-    border-radius: 0;
-    padding-left: 10px;
-  }
-
-  &[placeholder] {
-    font-family: inherit;
-    font-size: 0.9em;
-  }
+	&[placeholder] {
+		font-family: inherit;
+		font-size: 0.9em;
+	}
 }
 
 ::-webkit-input-placeholder,
 ::-moz-placeholder,
 :-ms-input-placeholder,
 :-moz-placeholder {
-  color: #aaa;
-  font-size: 0.9em;
+	color: #aaa;
+	font-size: 0.9em;
 }
 
 ::-ms-clear,
 ::-ms-reveal {
-  display: none;
-  font-size: 0.9em;
+	display: none;
+	font-size: 0.9em;
 }
 
 select,
 textarea,
 button {
-  font: inherit;
-  -webkit-appearance: none;
-  border-radius: 0;
+	font: inherit;
+	-webkit-appearance: none;
+	border-radius: 0;
 }
-
-
 
 input {
-
-  &[type="tel"],
-  &[type="number"],
-  &[type="text"],
-  &[type="password"],
-  &[type="file"] {
-    height: 40px;
-    line-height: 40px;
-    margin: 0;
-    vertical-align: middle;
-    border: solid 1px #ccc;
-    background: #fff;
-    -webkit-border-radius: 0;
-    resize: none;
-    box-sizing: border-box;
-  }
+	&[type='tel'],
+	&[type='number'],
+	&[type='text'],
+	&[type='password'],
+	&[type='file'] {
+		height: 40px;
+		line-height: 40px;
+		margin: 0;
+		vertical-align: middle;
+		border: solid 1px #ccc;
+		background: #fff;
+		-webkit-border-radius: 0;
+		resize: none;
+		box-sizing: border-box;
+	}
 }
-
-
-
-
 
 select {
-  height: 40px;
-  line-height: 40px;
-  margin: 0;
-  vertical-align: middle;
-  border: solid 1px #ccc;
-  background: #fff;
-  -webkit-border-radius: 0;
-  resize: none;
+	height: 40px;
+	line-height: 40px;
+	margin: 0;
+	vertical-align: middle;
+	border: solid 1px #ccc;
+	background: #fff;
+	-webkit-border-radius: 0;
+	resize: none;
 
-  text-indent: 5px;
-  margin: 0;
-  vertical-align: middle;
-  font-size: 0.9em;
-  border: solid 1px #ccc;
-  // background: white url(../images/icon/sel_i.png) no-repeat 100% center;
-  background-size: 20px auto;
-  -webkit-border-radius: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding-left: 10px;
+	text-indent: 5px;
+	margin: 0;
+	vertical-align: middle;
+	font-size: 0.9em;
+	border: solid 1px #ccc;
+	// background: white url(../images/icon/sel_i.png) no-repeat 100% center;
+	background-size: 20px auto;
+	-webkit-border-radius: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	padding-left: 10px;
 }
-
-
 
 /* IE 10, 11의 네이티브 화살표 숨기기 */
 
 select::-ms-expand {
-  display: none;
+	display: none;
 }
 
-input[type="file"] {
-  width: 100%;
-  padding: 0;
-  line-height: normal;
+input[type='file'] {
+	width: 100%;
+	padding: 0;
+	line-height: normal;
 }
 
 textarea {
-  background: #fbfbfb;
-  border: 1px solid #ebebeb;
-  padding: 5px;
-  width: 99%;
+	background: #fbfbfb;
+	border: 1px solid #ebebeb;
+	padding: 5px;
+	width: 99%;
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-overflow: '';
-  zoom: 1;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	text-overflow: '';
+	zoom: 1;
 }
 
 input {
-  &[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    border: 1px solid #ccc;
-    background: #fff;
-    vertical-align: middle;
-  }
+	&[type='checkbox'] {
+		width: 16px;
+		height: 16px;
+		border: 1px solid #ccc;
+		background: #fff;
+		vertical-align: middle;
+	}
 
-  &[type="radio"] {
-    width: 16px;
-    height: 16px;
-    border: solid 1px #ccc;
-    background: none;
-    border-radius: 20px;
-    vertical-align: middle;
-    margin-right: 10px;
-  }
+	&[type='radio'] {
+		width: 16px;
+		height: 16px;
+		border: solid 1px #ccc;
+		background: none;
+		border-radius: 20px;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
 
-  &[type="image"] {
-    border: none;
-    background: 0;
-  }
+	&[type='image'] {
+		border: none;
+		background: 0;
+	}
 
-  &[type="submit"] {
-    width: auto;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    line-height: 1.5;
-    color: #666;
-  }
+	&[type='submit'] {
+		width: auto;
+		border: 1px solid #ccc;
+		font-size: 1em;
+		line-height: 1.5;
+		color: #666;
+	}
 }
 
 option {
-  border: solid 1px #ccc;
-  margin: 0;
+	border: solid 1px #ccc;
+	margin: 0;
 }
 
 label {
-  margin: 0;
-  font-weight: normal;
-  vertical-align: middle;
+	margin: 0;
+	font-weight: normal;
+	vertical-align: middle;
 }
 
 textarea {
-  margin: 0;
-  border: solid 1px #ccc;
+	margin: 0;
+	border: solid 1px #ccc;
 }
 
 button {
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+p {
+	padding-bottom: 0;
 }

@@ -5,14 +5,14 @@ const DEFAULT_IMAGE = '/images/default_logo.png';
 const Preview = ({ cards }) => {
 	return (
 		<section className="preview">
-			<h1 className="title">Card Preview</h1>
+			<h3 className="title">Card Preview</h3>
 
 			<ul className="card-list">
 				{cards.map((card) => {
 					const url = card.fileURL || DEFAULT_IMAGE;
 					return (
-						<li>
-							<div className="card ">
+						<li key={card.id}>
+							<div className={`card ${getStyles(card.theme)}`}>
 								<div className="d-flex">
 									<div className="card-thumb col-auto">
 										<img src={url} alt="dprofile photo" />
@@ -37,5 +37,17 @@ const Preview = ({ cards }) => {
 		</section>
 	);
 };
+
+function getStyles(theme) {
+	switch (theme) {
+		case 'dark':
+			return 'dark';
+		case 'light':
+			return 'light';
+		case 'colorful':
+			return 'colorful';
+		default:
+	}
+}
 
 export default Preview;

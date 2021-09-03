@@ -3,34 +3,18 @@
 @import '../../scss/breakpoints';
 @import '../../scss/mixin';
 
-.preview {
-	flex-basis: 50%;
-	background-color: pink;
-	padding: 4rem;
-}
-
-.title {
-	width: 100%;
-	text-align: center;
-	margin-bottom: 1em;
-	color: makerGreen;
-}
-
 .card-list {
 	padding-left: 0;
 	list-style: none;
 
 	li {
-		padding: 5px 0;
+		padding: 10px 0;
 	}
 
 	.card {
 		border: none;
-		border-radius: 10px;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		-ms-border-radius: 10px;
-		-o-border-radius: 10px;
+		border-radius: 5px;
+
 		padding: 30px;
 	}
 	.d-flex {

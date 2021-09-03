@@ -15,6 +15,7 @@ const Maker = ({ authService }) => {
 			message: 'go for it',
 			work: 'My Sun',
 			fileURL: 'teo.jpg',
+			fileName: '',
 		},
 		{
 			id: '2',
@@ -25,6 +26,7 @@ const Maker = ({ authService }) => {
 			message: 'go for it',
 			work: 'My Sun',
 			fileURL: null,
+			fileName: '',
 		},
 		{
 			id: '3',
@@ -35,6 +37,7 @@ const Maker = ({ authService }) => {
 			message: 'go for it',
 			work: 'My Sun',
 			fileURL: null,
+			fileName: '',
 		},
 	]);
 
@@ -50,6 +53,12 @@ const Maker = ({ authService }) => {
 			}
 		});
 	});
+	//update 카드
+	const addCard = (obj) => {
+		const updated = [...cards, obj];
+		setCards(updated);
+		console.log(cards, obj);
+	};
 
 	return (
 		<section className="maker">
@@ -60,10 +69,10 @@ const Maker = ({ authService }) => {
 					</button>
 				)}
 				<img className="logo" src="/images/logo.png" alt="logo" />
-				<h1 className="title">Business Card Maker</h1>
+				<h2 className="title">Business Card Maker</h2>
 			</header>
 			<div className="maker-wrap">
-				<Editor cards={cards} />
+				<Editor cards={cards} addCard={addCard} />
 				<Preview cards={cards} />
 			</div>
 
