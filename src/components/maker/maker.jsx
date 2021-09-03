@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import AddUser from '../editor/AddUser';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import './maker.scss';
@@ -60,6 +61,38 @@ const Maker = ({ authService }) => {
 		console.log(cards, obj);
 	};
 
+	//create usder
+
+	const { id, name, company, theme, email, message, work, fileURL, fileName } = cards;
+	const [inputs, setInputs] = useState({
+		id: '',
+		name: '',
+		company: '',
+		theme: '',
+		email: '',
+		message: '',
+		work: '',
+		fileURL: '',
+		fileName: '',
+	});
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		console.log(e.target.value);
+		setInputs({
+			...inputs,
+			id: Date.now(), //uuid,
+			[name]: value,
+		});
+
+		console.log(inputs);
+	};
+
+	const onCreate = () => {
+		const updated = [...cards, inputs];
+		setCards(updated);
+		console.log(cards, inputs);
+	};
+
 	return (
 		<section className="maker">
 			<header className="header">
@@ -71,6 +104,8 @@ const Maker = ({ authService }) => {
 				<img className="logo" src="/images/logo.png" alt="logo" />
 				<h2 className="title">Business Card Maker</h2>
 			</header>
+
+			<AddUser onChange={onChange} onCreate={onCreate} name={name} company={company} theme={theme} work={work} email={email} message={message} />
 			<div className="maker-wrap">
 				<Editor cards={cards} addCard={addCard} />
 				<Preview cards={cards} />
