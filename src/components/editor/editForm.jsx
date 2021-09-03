@@ -24,7 +24,8 @@ const EditForm = ({ card, updateCard, deleteCard }) => {
 		});
 	};
 
-	const onSubmit = () => {
+	const onSubmit = (event) => {
+		event.preventDefault();
 		deleteCard(card);
 	};
 

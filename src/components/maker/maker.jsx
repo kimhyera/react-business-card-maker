@@ -82,7 +82,7 @@ const Maker = ({ authService }) => {
 				<h2 className="title">Business Card Maker</h2>
 			</header>
 			<div className="maker-wrap">
-				<Editor cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deletedCard={deleteCard} />
+				<Editor cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deleteCard={deleteCard} />
 				<Preview cards={cards} />
 			</div>
 
