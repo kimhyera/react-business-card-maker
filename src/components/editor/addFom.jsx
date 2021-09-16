@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const AddFom = ({ addCard }) => {
+const AddFom = ({ FileInput, addCard }) => {
 	const formRef = useRef();
 	const nameRef = useRef();
 	const companyRef = useRef();
@@ -64,7 +64,7 @@ const AddFom = ({ addCard }) => {
 					<div className="row">
 						<div className="col-6">
 							<button type="button" className="btn btn-secondary">
-								image
+								<FileInput />
 							</button>
 						</div>
 						<div className="col-6">

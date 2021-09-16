@@ -1,58 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import './maker.scss';
 
-const Maker = ({ authService }) => {
-	const [cards, setCards] = useState({
-		1: {
-			id: '1',
-			name: 'Ellie',
-			company: 'Samsung',
-			theme: 'dark',
-			title: 'Software Engineer',
-			email: 'ellie@gmail.com',
-			message: 'go for it',
-			fileName: 'ellie',
-			fileURL: null,
-		},
-		2: {
-			id: '2',
-			name: 'Ellie2',
-			company: 'Samsung',
-			theme: 'light',
-			title: 'Software Engineer',
-			email: 'ellie@gmail.com',
-			message: 'go for it',
-			fileName: 'ellie',
-			fileURL: 'ellie.png',
-		},
-		3: {
-			id: '3',
-			name: 'Ellie3',
-			company: 'Samsung',
-			theme: 'colorful',
-			title: 'Software Engineer',
-			email: 'ellie@gmail.com',
-			message: 'go for it',
-			fileName: 'ellie',
-			fileURL: null,
-		},
-	});
-
+const Maker = ({ authService, FileInput, cardRepository }) => {
 	const history = useHistory();
-	const onLogout = () => {
+	const [cards, setCards] = useState({});
+	const [userId, setUserId] = useState(
+		history.location.state && history.location.state.id
+	);
+
+	const onLogout = useCallback(() => {
 		authService.logout();
-	};
+	}, [authService]);
+
+	//useEffect 로직별로 만든다.
+	useEffect(() => {
+		if (!userId) {
+			return;
+		}
+		const stopSync = cardRepository.syncCards(userId, (cards) => {
+			setCards(cards);
+		});
+		return () => stopSync();
+	}, [userId, cardRepository]);
 
 	useEffect(() => {
 		authService.onAuthChange((user) => {
-			if (!user) {
+			if (user) {
+				setUserId(user.uid);
+			} else {
 				history.push('/');
 			}
 		});
-	});
+	}, [authService, userId, history]);
 
 	const createOrUpdateCard = (card) => {
 		setCards((cards) => {
@@ -60,6 +42,7 @@ const Maker = ({ authService }) => {
 			updated[card.id] = card;
 			return updated;
 		});
+		cardRepository.saveCard(userId, card);
 	};
 
 	const deleteCard = (card) => {
@@ -68,8 +51,8 @@ const Maker = ({ authService }) => {
 			delete updated[card.id];
 			return updated;
 		});
+		cardRepository.removeCard(userId, card);
 	};
-
 	return (
 		<section className="maker">
 			<header className="header">
@@ -78,11 +61,18 @@ const Maker = ({ authService }) => {
 						Logout
 					</button>
 				)}
+
 				<img className="logo" src="/images/logo.png" alt="logo" />
 				<h2 className="title">Business Card Maker</h2>
 			</header>
 			<div className="maker-wrap">
-				<Editor cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deleteCard={deleteCard} />
+				<Editor
+					FileInput={FileInput}
+					cards={cards}
+					addCard={createOrUpdateCard}
+					updateCard={createOrUpdateCard}
+					deleteCard={deleteCard}
+				/>
 				<Preview cards={cards} />
 			</div>
 

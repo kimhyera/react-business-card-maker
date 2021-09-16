@@ -39,3 +39,21 @@ https://firebase.google.com/docs/auth/web/google-signin
 
   //card map() 처리가 아닌 card key 를 map 처리한다. (Object.keys() 이용)
 </pre>
+
+## 이미지 업로더
+
+- 프롭전달 많음...이럴경우 service 를 외부에서 만든후 전달함
+<pre>
+  //index 
+  const ImageUploader = new ImageUploader();
+  </pre>
+
+- input type="file" 클릭하기 위한 코드
+<pre>
+	const onButtonClick = () => {
+		inputRef.current.click();
+	};
+    </pre>
+
+- 파일 타겟
+  event.target.files[0]
