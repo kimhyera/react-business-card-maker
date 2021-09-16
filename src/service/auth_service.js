@@ -1,19 +1,17 @@
-import firebase from 'firebase';
-
-import firebaseApp from './firebase';
+import { firebaseAuth } from './firebase';
 
 class AuthService {
 	login(providerName) {
-		const authProvider = new firebase.auth[`${providerName}AuthProvider`]();
-		return firebaseApp.auth().signInWithPopup(authProvider);
+		const authProvider = new firebaseAuth[`${providerName}AuthProvider`]();
+		return firebaseAuth.signInWithPopup(authProvider);
 	}
 
 	logout() {
-		firebase.auth().signOut();
+		firebaseAuth.signOut();
 	}
 
 	onAuthChange(onUserChanged) {
-		firebase.auth().onAuthStateChanged((user) => {
+		firebaseAuth.onAuthStateChanged((user) => {
 			onUserChanged(user);
 		});
 	}

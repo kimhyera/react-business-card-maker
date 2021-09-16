@@ -1,9 +1,8 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import styles from './card_edit_form.module.css';
 import Button from '../button/button';
-import ImageFileInput from '../image_file_input/image_file_input';
 
-const EditForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardEditForm = memo(({ FileInput, card, updateCard, deleteCard }) => {
 	const nameRef = useRef();
 	const companyRef = useRef();
 	const themeRef = useRef();
@@ -11,8 +10,7 @@ const EditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 	const emailRef = useRef();
 	const messageRef = useRef();
 
-	const { name, company, title, email, message, theme, fileName, fileURL } =
-		card;
+	const { name, company, title, email, message, theme, fileName } = card;
 
 	const onFileChange = (file) => {
 		updateCard({
@@ -27,108 +25,74 @@ const EditForm = ({ FileInput, card, updateCard, deleteCard }) => {
 			return;
 		}
 		event.preventDefault();
-
-		console.log(event.currentTarget.value);
 		updateCard({
 			...card,
 			[event.currentTarget.name]: event.currentTarget.value,
 		});
 	};
 
-	const onSubmit = (event) => {
-		event.preventDefault();
+	const onSubmit = () => {
 		deleteCard(card);
 	};
 
 	return (
-		<form className="adit-form">
-			<li className="item" key={card.id} data-id={card.id}>
-				<div className="row">
-					<div className="col-4">
-						<input
-							className="form-control"
-							type="text"
-							name="name"
-							//ref={nameRef}
-							value={name}
-							onChange={onChange}
-						/>
-					</div>
-					<div className="col-4">
-						<input
-							type="text"
-							className="form-control"
-							value={card.company}
-							//ref={companyRef}
-							name="company"
-							onChange={onChange}
-						/>
-					</div>
-					<div className="col-4">
-						<select
-							className="form-select"
-							value={card.theme}
-							//ref={themeRef}
-							name="theme"
-							onChange={onChange}
-						>
-							<option value="light">light</option>
-							<option value="dark">dark</option>
-							<option value="colorful">colorful</option>
-						</select>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-6">
-						<input
-							type="text"
-							className="form-control"
-							value={card.title}
-							//ref={titleRef}
-							name="title"
-							onChange={onChange}
-						/>
-					</div>
-					<div className="col-6">
-						<input
-							type="text"
-							className="form-control"
-							value={card.email}
-							//ref={emailRef}
-							name="email"
-							onChange={onChange}
-						/>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-12">
-						<input
-							type="text"
-							className="form-control"
-							value={card.message}
-							//ref={messageRef}
-							name="message"
-							onChange={onChange}
-						/>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-6">
-						<FileInput onFileChange={onFileChange} />
-					</div>
-					<div className="col-6">
-						<button
-							className="btn btn-secondary "
-							name="Delete"
-							onClick={onSubmit}
-						>
-							Delete
-						</button>
-					</div>
-				</div>
-			</li>
+		<form className={styles.form}>
+			<input
+				className={styles.input}
+				type="text"
+				name="name"
+				ref={nameRef}
+				value={name}
+				onChange={onChange}
+			/>
+			<input
+				className={styles.input}
+				type="text"
+				name="company"
+				ref={companyRef}
+				value={company}
+				onChange={onChange}
+			/>
+			<select
+				className={styles.select}
+				name="theme"
+				ref={themeRef}
+				value={theme}
+				onChange={onChange}
+			>
+				<option value="light">light</option>
+				<option value="dark">dark</option>
+				<option value="colorful">colorful</option>
+			</select>
+			<input
+				className={styles.input}
+				type="text"
+				name="title"
+				ref={titleRef}
+				value={title}
+				onChange={onChange}
+			/>
+			<input
+				className={styles.input}
+				type="text"
+				name="email"
+				ref={emailRef}
+				value={email}
+				onChange={onChange}
+			/>
+			<textarea
+				className={styles.textarea}
+				ref={messageRef}
+				name="message"
+				value={message}
+				onChange={onChange}
+			/>
+			<div className={styles.fileInput}>
+				<FileInput name={fileName} onFileChange={onFileChange} />
+			</div>
+			<Button name="Delete" onClick={onSubmit} />
 		</form>
 	);
-};
+});
 
-export default EditForm;
+export default CardEditForm;
