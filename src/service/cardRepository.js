@@ -1,7 +1,6 @@
 import { firebaseDatabase } from './firebase';
 
 class CardRepository {
-	//다른 pc 를 열었을때도 동일한 화면이 나올수 있도록 작업을 해준다.
 	syncCards(userId, onUpdate) {
 		const ref = firebaseDatabase.ref(`${userId}/cards`);
 		ref.on('value', (snapshot) => {
@@ -9,8 +8,6 @@ class CardRepository {
 			value && onUpdate(value);
 		});
 		return () => ref.off();
-
-		//언마운트 될때 리스너 분리
 	}
 	saveCard(userId, card) {
 		firebaseDatabase.ref(`${userId}/cards/${card.id}`).set(card);

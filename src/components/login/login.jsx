@@ -4,27 +4,22 @@ import './login.scss';
 
 const Login = ({ authService }) => {
 	const history = useHistory();
-
 	const goToMaker = (userId) => {
 		history.push({
 			pathname: '/maker',
-			state: {
-				id: userId,
-			},
+			state: { id: userId },
 		});
 	};
 
 	const onLogin = (event) => {
-		authService
-			.login(event.currentTarget.textContent) //
+		authService //
+			.login(event.currentTarget.textContent)
 			.then((data) => goToMaker(data.user.uid));
-
-		console.log(event.currentTarget.textContent);
 	};
 
 	useEffect(() => {
 		authService.onAuthChange((user) => {
-			user && goToMaker(user.uid);
+			user && goToMaker(user.id);
 		});
 	});
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './app';
 import ImageFileInput from './components/image_file_input/image_file_input';
 import AuthService from './service/auth_service';
 import ImageUploader from './service/image_uploader';
